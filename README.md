@@ -1,2 +1,14 @@
-# pygame-cookbook
-pygameのクックブック
+pygame-cookbook
+===============
+
+pygameのチュートリアル集
+
+## 参考サイト
+[人工知能に関する断創録 Pythonでゲーム作りますが何か？](http://aidiary.hatenablog.com/entry/20080507/1269694935)
+
+[Pygameでゲーム作った話](http://www.zengeren.com/content/data/06/06_pygame.pdf)
+pygame.mixerに関するTips記載
+
+## 参考コード
+[pygame racing sample](http://www.pygame.org/tags/racing)
+[pygame racin red](http://pygame.org/project-Lap+Master-2923-4798.html)
