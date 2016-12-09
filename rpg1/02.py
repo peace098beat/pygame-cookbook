@@ -50,17 +50,12 @@ def main():
     screen = pygame.display.set_mode(SCR_RECT.size)
     pygame.display.set_caption(u"PyRPG 02 マップを作る")
      
-    # イメージロード
-    playerImg = load_image("player1.png", -1)  # プレイヤー
-    grassImg = load_image("grass.png")         # 草地
-    waterImg = load_image("water.png")         # 水
-    
     # Map
     Map.images[GRASS] = load_image("grass.png")
     Map.images[WATER] = load_image("water.png")
     map = Map("test2")
 
-    player = Player("player1", (1,1), None)
+    player = Player("Vheicle0_64x32", (1,1), DOWN)
 
     clock = pygame.time.Clock()
 
@@ -116,11 +111,13 @@ class Map:
 
     def draw(self, screen, offset):
         """マップを描画する"""
-        offsetx, offsety = offset
-        startx = int(offsetx / GS)
-        starty = int(offsety / GS)
+        # offsetx, offsety = offset
+        startx, starty = offset
+        # startx = int(offsetx / GS)
+        # starty = int(offsety / GS)
         endx = int(startx + SCR_RECT.width/GS + 1)
         endy = int(starty + SCR_RECT.height/GS + 1)
+        endx, endy = startx + SCR_RECT.width
 
         for y in range(starty, endy):
             for x in range(startx, endx):
