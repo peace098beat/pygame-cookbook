@@ -145,27 +145,29 @@ class Player:
 
     def update(self, map):
         self.image = self.image
+        self.direction = None
+        self.vx, self.vy = 0, 0
 
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_DOWN]:
             self.direction = DOWN
             self.vx, self.vy = 0, self.speed
+            self.rect.move_ip(self.vx, self.vy)
 
-        elif pressed_keys[K_UP]:
+        if pressed_keys[K_UP]:
             self.direction = UP
             self.vx, self.vy = 0, -self.speed
+            self.rect.move_ip(self.vx, self.vy)
 
-        elif pressed_keys[K_LEFT]:
+        if pressed_keys[K_LEFT]:
             self.direction = LEFT
             self.vx, self.vy = -self.speed, 0
+            self.rect.move_ip(self.vx, self.vy)
 
-        elif pressed_keys[K_RIGHT]:
+        if pressed_keys[K_RIGHT]:
             self.direction = RIGHT
             self.vx, self.vy = self.speed, 0
-        else:
-            self.direction = None
-            self.vx, self.vy = 0, 0
-        self.rect.move_ip(self.vx, self.vy)
+            self.rect.move_ip(self.vx, self.vy)
 
 
     def draw(self, screen, offset):
