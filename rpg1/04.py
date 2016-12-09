@@ -143,6 +143,7 @@ class Player:
         self.x, self.y = init_pos[0], init_pos[1]
         self.rect = self.image.get_rect(topleft=(self.x*GS, self.y*GS))
         self.direction = dir #?
+        self.angle=0
 
     def update(self, map):
         self.image = self.image
@@ -164,42 +165,24 @@ class Player:
             self.direction = LEFT
             self.vx, self.vy = -self.speed, 0
             self.rect.move_ip(self.vx, self.vy)
+            self.angle += 1
 
         if pressed_keys[K_RIGHT]:
             self.direction = RIGHT
             self.vx, self.vy = self.speed, 0
             self.rect.move_ip(self.vx, self.vy)
+            self.angle -= 1
 
+        if not -360 < self.angle < 360:
+            self.angle = 0
 
     def draw(self, screen, offset):
         offsetx, offsety = offset
         player_x = self.rect.topleft[0]
         player_y = self.rect.topleft[1]
-        screen.blit(self.image, (player_x-offsetx, player_y-offsety))
-    
-    def move(self, dir, map):
-        """プレイヤーを移動"""
-        if dir == DOWN:
-            self.direction = DOWN
-            if map.is_movable(self.x, self.y+1):
-                self.y += 1
-                self.rect.top += GS
-        elif dir == LEFT:
-            self.direction = LEFT
-            if map.is_movable(self.x-1, self.y):
-                self.x -= 1
-                self.rect.left -= GS
-        elif dir == RIGHT:
-            self.direction = RIGHT
-            if map.is_movable(self.x+1, self.y):
-                self.x += 1
-                self.rect.left += GS
-        elif dir == UP:
-            self.direction = UP
-            if map.is_movable(self.x, self.y-1):
-                self.y -= 1
-                self.rect.top -= GS
 
+        img = pygame.transform.rotate(self.image, self.angle)
+        screen.blit(img, (player_x-offsetx, player_y-offsety))
 
 
 
